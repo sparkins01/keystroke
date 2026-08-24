@@ -1,30 +1,37 @@
 # ---------------------------------------------------------------------------
-# GUARD RAILS. These patterns block the files that still contain participants'
-# real names. Do not remove them.
+# GUARD RAILS. These block the files that still contain participants' real
+# names. Do not remove them.
 #
 # Git history is permanent: if any of these is committed even once, deleting it
 # in a later commit does NOT remove it from the repository, and on a public
 # repo it may already have been cloned, forked or indexed.
+#
+# NOTE: do not add a bare "Data/" or "Output/" rule here. Git on Windows sets
+# core.ignorecase=true, so those also match this repository's own pseudonymised
+# "data/" directory and would silently exclude the entire dataset from commits.
+# The raw collection tree lives outside this repository; the patterns below
+# catch it by its distinctive contents instead of by directory name.
 # ---------------------------------------------------------------------------
 
-# The ID -> real name mapping. This is the re-identification key.
+# The participant_id -> real name mapping. This is the re-identification key.
 participants.csv
 **/participants.csv
 
-# Raw collection tree: the per-session directory names embed participants'
-# real names, e.g. "33004-42675 - FIRSTNAME SURNAME - 22 November, 2020".
-Data/
-**/Data/
-
-# Un-pseudonymised parsed CSVs: these still carry a participant_name column.
-Output/
-**/Output/
+# Raw collection tree, if ever copied in: its per-session directory names embed
+# participants' real names, e.g. "33004-42675 - FIRSTNAME SURNAME - 22 Nov 2020".
+Week [0-9]/
+Week [0-9][0-9]/
+**/Week [0-9]/
+*timings.txt
+*accuracy.txt
 
 # ---------------------------------------------------------------------------
-# Large regenerable intermediates (~1.5 GB), well over GitHub's limits
+# Large regenerable outputs (~1.5 GB), well over GitHub's limits
 # ---------------------------------------------------------------------------
 *.parquet
 *.pkl
+results/
+**/results/
 Result/
 **/__pycache__/
 *.pyc

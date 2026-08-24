@@ -16,6 +16,64 @@ University).
 | `data/sessions_summary.csv` | Per-participant, per-week session accounting |
 | `data/skipped_sessions.csv` | Sessions excluded during cleaning, with reasons |
 | `data/pairing_notes.csv` | Notes on timing/accuracy file pairing |
+| `code/` | The full analysis pipeline |
+| `requirements.txt` | Pinned package versions used for the published results |
+
+## Running the analysis
+
+```bash
+pip install -r requirements.txt
+bash code/run.sh
+```
+
+Paths default to `./data` and `./results` relative to the repository root, so a
+fresh clone runs with no configuration.
+
+`run.sh` has two modes. The default is a **quick verification run** (~5 minutes):
+one fold, one training seed, a reduced training budget and sub-sampled
+impostors. It exercises every stage of the pipeline, but the absolute error
+rates it produces will *not* match the paper.
+
+For the **full reproduction** (~10–20 h on CPU), which runs the primary
+analysis, both independent end-to-end replicates, the training-seed variance
+decomposition, the logistic sensitivity check and the participant-balanced EER
+check:
+
+```bash
+REPRODUCTION_MODE=full KD_DEVICE=cuda bash code/run.sh
+```
+
+The published results were produced on a single consumer-grade GPU, at roughly
+2.8 h per replicate.
+
+### Pipeline
+
+| Stage | Module |
+|---|---|
+| Raw log parsing (raw logs not published, see below) | `parse_keystrokes.py` |
+| Loading and backspace replay | `data_loading.py` |
+| Password corpus recovery | `password_metadata.py` |
+| Feature extraction, IQR clipping | `features.py`, `raw_sequences.py` |
+| Subject-disjoint folds | `splits.py` |
+| M1 scaled Manhattan, M2 gradient boosting | `matchers_classical.py` |
+| M3 TypeNet-style LSTM, M4 TypeFormer-style Transformer | `embedding_models.py` |
+| Genuine/impostor trial generation | `protocol.py` |
+| EER, FNMR, DET, bootstrap CIs | `metrics.py` |
+| Linear mixed-effects model | `stats_model.py` |
+| Logistic sensitivity checks | `glmm_logit_clusterrobust.py`, `glmm_sensitivity_check.py` |
+| Training-seed variance decomposition | `seed_robustness_check.py` |
+| Participant-balanced EER check | `participant_balanced_eer.py` |
+| Orchestration | `run_experiments.py` |
+
+### Determinism
+
+Fold assignment and triplet sampling are seeded, so a given `--seed` reproduces
+its own fold split deterministically. Neural network training is **not**
+bit-reproducible across different hardware or BLAS backends. This matters more
+here than usual: the paper's finding is precisely that mechanism comparisons are
+sensitive to training-run randomness, with 58% of the recurrent model's
+fold-to-fold variance attributable to seed noise. Expect the qualitative pattern
+to reproduce, with small numerical differences in the third significant figure.
 
 ## The keystroke data
 
