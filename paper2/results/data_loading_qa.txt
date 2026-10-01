@@ -1,0 +1,4 @@
+raw groups: 99607
+clean samples: 94894
+dropped (length mismatch after replay): 4713
+unknown key tokens: {'Delete': 147, 'LButton, OemClear': 11}

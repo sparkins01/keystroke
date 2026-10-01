@@ -1,0 +1,40 @@
+====================================================================================
+EXPERIMENT 12: does the proposed naturalness check work?
+====================================================================================
+Detection rate at a fixed cost to legitimate users (BPCER).
+Centrality rejects samples too CLOSE to the population centroid.
+Covariance rejects samples whose joint structure is implausible.
+
+------------------------------------------------------------------------------------
+cost to legitimate users (BPCER) = 1%
+------------------------------------------------------------------------------------
+               attack     n  centrality  covariance  combined
+        A2_population  3400       0.385       0.000     0.275
+           A2_sampled 17000       0.004       0.028     0.016
+ A4_keyed_median_full  3400       0.036       0.003     0.025
+A4_keyed_sampled_full 17000       0.030       0.005     0.022
+
+------------------------------------------------------------------------------------
+cost to legitimate users (BPCER) = 2%
+------------------------------------------------------------------------------------
+               attack     n  centrality  covariance  combined
+        A2_population  3400       0.470       0.000     0.385
+           A2_sampled 17000       0.010       0.055     0.033
+ A4_keyed_median_full  3400       0.052       0.007     0.039
+A4_keyed_sampled_full 17000       0.046       0.009     0.034
+
+------------------------------------------------------------------------------------
+cost to legitimate users (BPCER) = 5%
+------------------------------------------------------------------------------------
+               attack     n  centrality  covariance  combined
+        A2_population  3400       0.680       0.000     0.500
+           A2_sampled 17000       0.033       0.116     0.080
+ A4_keyed_median_full  3400       0.095       0.013     0.067
+A4_keyed_sampled_full 17000       0.090       0.018     0.064
+
+------------------------------------------------------------------------------------
+Reading
+------------------------------------------------------------------------------------
+median forgeries detected: centrality 9.5%, combined 6.7%
+sampled forgeries detected: covariance 1.8%, combined 6.4%
+=> the check removes the noiseless variant but not the attack itself

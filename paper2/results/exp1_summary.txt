@@ -1,0 +1,91 @@
+==============================================================================
+EXPERIMENT 1: does adversary practice matter?   M1 scaled Manhattan
+==============================================================================
+genuine trials : 342,340
+impostor trials: 2,827,938
+folds          : [np.int32(0), np.int32(1), np.int32(2), np.int32(3), np.int32(4)]
+
+------------------------------------------------------------------------------
+1. A0 (first-ever exposure) vs A1 (week 8) -- paired within gallery
+------------------------------------------------------------------------------
+matched attacker/gallery pairs : 342,040
+standardised score shift A1-A0 : +0.1667 [95% CI +0.0961, +0.2331]
+victims where practice helped  : 64/85
+=> practice moves the attacker CLOSER to the victim template (excludes 0)
+
+   hardware control: week 1 vs week 4, both pre-transition
+   standardised shift wk4-wk1     : +0.1076 [95% CI +0.0544, +0.1606]
+   => effect survives holding hardware fixed (excludes 0)
+
+------------------------------------------------------------------------------
+2. Impostor practice curve (standardised, within gallery)
+------------------------------------------------------------------------------
+ imp_week  mean_z  median_practice      n
+        1 -0.1311           0.0000 376844
+        2 -0.0882           4.0000 366227
+        3 -0.0217           8.0000 358992
+        4  0.0084          12.0000 347974
+        5  0.0730          16.0000 344125
+        6  0.0490          20.0000 351504
+        7  0.0505          24.0000 340232
+        8  0.0792          28.0000 342040
+
+------------------------------------------------------------------------------
+3. Marginal security at fixed usability budgets
+------------------------------------------------------------------------------
+ delta      adversary    eer  fmr_at_fnmr_0.05  bits_at_fnmr_0.05  bits3_at_fnmr_0.05
+     0 A0_unpractised 0.1872            0.4438             1.1720              0.2724
+     0   A1_practised 0.2079            0.5163             0.9538              0.1733
+     1 A0_unpractised 0.2176            0.5265             0.9254              0.1619
+     1   A1_practised 0.2400            0.5965             0.7453              0.0980
+     2 A0_unpractised 0.2326            0.5874             0.7675              0.1051
+     2   A1_practised 0.2543            0.6530             0.6148              0.0616
+     3 A0_unpractised 0.2478            0.6252             0.6776              0.0780
+     3   A1_practised 0.2678            0.6840             0.5478              0.0462
+     4 A0_unpractised 0.2623            0.6707             0.5764              0.0525
+     4   A1_practised 0.2802            0.7203             0.4733              0.0319
+     5 A0_unpractised 0.2769            0.7148             0.4843              0.0338
+     5   A1_practised 0.2926            0.7577             0.4004              0.0207
+     6 A0_unpractised 0.2929            0.7238             0.4664              0.0307
+     6   A1_practised 0.3065            0.7595             0.3968              0.0202
+     7 A0_unpractised 0.3204            0.7642             0.3880              0.0190
+     7   A1_practised 0.3324            0.8007             0.3206              0.0115
+
+bits3 = marginal security after three allowed attempts.
+One extra random lowercase character is worth about 4.70 bits.
+
+------------------------------------------------------------------------------
+4. Paper 1 decomposition: genuine delta vs impostor week
+------------------------------------------------------------------------------
+EER by genuine delta (rows) x impostor week (columns)
+imp_week      1      2      3      4      5      6      7      8
+delta                                                           
+0        0.1895 0.1964 0.1999 0.2039 0.2060 0.2038 0.2053 0.2079
+1        0.2201 0.2280 0.2322 0.2365 0.2387 0.2361 0.2375 0.2400
+2        0.2352 0.2428 0.2472 0.2515 0.2532 0.2503 0.2518 0.2543
+3        0.2508 0.2575 0.2617 0.2660 0.2677 0.2642 0.2657 0.2678
+4        0.2654 0.2714 0.2755 0.2789 0.2803 0.2770 0.2785 0.2802
+5        0.2801 0.2848 0.2881 0.2907 0.2922 0.2886 0.2900 0.2926
+6        0.2961 0.3001 0.3032 0.3061 0.3079 0.3017 0.3028 0.3065
+7        0.3234 0.3268 0.3295 0.3308 0.3343 0.3287 0.3280 0.3324
+
+marginal effect of genuine drift  (delta 0 -> 7, impostor fixed): 0.2016 -> 0.3292 (+12.76 pts)
+marginal effect of adversary practice (week 1 -> 8, genuine fixed): 0.2576 -> 0.2727 (+1.51 pts)
+
+------------------------------------------------------------------------------
+5. How much of paper 1's ageing effect is the adversary improving?
+------------------------------------------------------------------------------
+ delta  n_genuine  n_galleries  eer_paper1_diagonal  eer_impostor_fixed_wk1  eer_impostor_fixed_wk8
+     0      23827        23709               0.2042                  0.1895                  0.2079
+     1      79994        20628               0.2375                  0.2201                  0.2400
+     2      68527        17664               0.2528                  0.2352                  0.2543
+     3      56387        14547               0.2668                  0.2508                  0.2678
+     4      45332        11702               0.2794                  0.2654                  0.2802
+     5      34393         8826               0.2904                  0.2801                  0.2926
+     6      22474         5795               0.3047                  0.2961                  0.3065
+     7      11406         2902               0.3324                  0.3234                  0.3324
+
+ageing delta 0 -> 7, paper 1 pairing          : +12.81 pts
+ageing delta 0 -> 7, impostor held at week 8  : +12.45 pts
+ageing delta 0 -> 7, impostor held at week 1  : +13.39 pts
+=> paper 1 understates genuine template ageing by 0.37 to 0.57 pts (3-4% of its reported effect)

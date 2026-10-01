@@ -36,6 +36,16 @@ Result/
 **/__pycache__/
 *.pyc
 
+# Exception: paper 2's summary tables are small and are part of the release.
+# The directory has to be un-excluded first, because git cannot re-include a
+# file whose parent directory is excluded. Everything inside is then excluded
+# again and only .csv and .txt are allowed back, so caches, Parquet trial files
+# and model weights stay out even if they are written here by a run.
+!paper2/results/
+paper2/results/*
+!paper2/results/*.csv
+!paper2/results/*.txt
+
 # LaTeX build artefacts
 *.aux
 *.bbl

@@ -1,0 +1,20 @@
+==============================================================================
+EXPERIMENT 1b: does the population converge as it becomes fluent?
+==============================================================================
+40 passwords x 8 weeks
+
+Mean across passwords, by week:
+ week  f_ratio  between_var  within_var  n
+    1   1.9186       0.0789      0.0628 40
+    2   2.2122       0.0836      0.0527 40
+    3   2.0102       0.0755      0.0486 40
+    4   1.9014       0.0715      0.0459 40
+    5   1.9850       0.0759      0.0455 40
+    6   1.8713       0.0724      0.0457 40
+    7   2.0073       0.0737      0.0450 40
+    8   2.0746       0.0695      0.0435 40
+
+paired change in F-ratio, week 1 -> week 8, over 40 passwords:
+  mean +0.1560  [95% CI +0.0954, +0.2196]
+  passwords that became LESS discriminative: 11/40
+  => no reliable loss of discriminability over the eight weeks

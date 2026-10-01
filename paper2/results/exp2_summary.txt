@@ -1,0 +1,87 @@
+==================================================================================
+EXPERIMENT 2: cross-password transfer attack (A4)   M1 scaled Manhattan
+==================================================================================
+forgery scores: 734,760  over 10 attack variants
+
+----------------------------------------------------------------------------------
+Attack success (FMR) at a 5% usability budget, by enrolment-to-query gap
+----------------------------------------------------------------------------------
+delta                       0     1     2     3     4     5     6     7
+attack                                                                 
+A0_unpractised          0.444 0.527 0.587 0.625 0.671 0.715 0.724 0.764
+A1_practised            0.516 0.597 0.653 0.684 0.720 0.758 0.760 0.801
+A2_population           0.796 0.857 0.888 0.899 0.911 0.922 0.924 0.942
+A2_sampled              0.452 0.551 0.620 0.664 0.714 0.762 0.767 0.814
+A4_global_median_early  0.878 0.920 0.943 0.954 0.962 0.970 0.965 0.966
+A4_global_median_full   0.900 0.933 0.949 0.955 0.960 0.963 0.960 0.961
+A4_global_sampled_early 0.576 0.668 0.733 0.770 0.812 0.848 0.848 0.869
+A4_global_sampled_full  0.590 0.679 0.740 0.773 0.809 0.841 0.840 0.857
+A4_keyed_median_early   0.902 0.936 0.954 0.963 0.971 0.975 0.971 0.972
+A4_keyed_median_full    0.924 0.947 0.958 0.962 0.965 0.967 0.965 0.965
+A4_keyed_sampled_early  0.890 0.927 0.948 0.958 0.966 0.973 0.969 0.972
+A4_keyed_sampled_full   0.916 0.941 0.955 0.959 0.963 0.965 0.962 0.964
+
+Marginal security in bits at the same budget
+delta                      0    1    2    3    4    5    6    7
+attack                                                         
+A0_unpractised          1.17 0.93 0.77 0.68 0.58 0.48 0.47 0.39
+A1_practised            0.95 0.75 0.61 0.55 0.47 0.40 0.40 0.32
+A2_population           0.33 0.22 0.17 0.15 0.13 0.12 0.11 0.09
+A2_sampled              1.15 0.86 0.69 0.59 0.49 0.39 0.38 0.30
+A4_global_median_early  0.19 0.12 0.09 0.07 0.06 0.04 0.05 0.05
+A4_global_median_full   0.15 0.10 0.08 0.07 0.06 0.05 0.06 0.06
+A4_global_sampled_early 0.80 0.58 0.45 0.38 0.30 0.24 0.24 0.20
+A4_global_sampled_full  0.76 0.56 0.43 0.37 0.31 0.25 0.25 0.22
+A4_keyed_median_early   0.15 0.10 0.07 0.05 0.04 0.04 0.04 0.04
+A4_keyed_median_full    0.11 0.08 0.06 0.06 0.05 0.05 0.05 0.05
+A4_keyed_sampled_early  0.17 0.11 0.08 0.06 0.05 0.04 0.05 0.04
+A4_keyed_sampled_full   0.13 0.09 0.07 0.06 0.05 0.05 0.06 0.05
+
+----------------------------------------------------------------------------------
+Control: is the attack capturing the victim, or exploiting noiselessness?
+----------------------------------------------------------------------------------
+genuine_percentile = %% of the victim's own genuine samples scoring BELOW
+the typical forgery. Above 50 means the forgery matches the template more
+closely than the real user typically does, which no human attacker achieves.
+
+                 attack  fmr_at_fnmr_0.05  genuine_percentile
+         A0_unpractised             0.444               3.626
+           A1_practised             0.516               5.397
+          A2_population             0.796              16.204
+             A2_sampled             0.452               4.042
+ A4_global_median_early             0.878              25.047
+  A4_global_median_full             0.900              28.249
+A4_global_sampled_early             0.576               6.702
+ A4_global_sampled_full             0.590               7.147
+  A4_keyed_median_early             0.902              30.096
+   A4_keyed_median_full             0.924              35.095
+ A4_keyed_sampled_early             0.890              27.297
+  A4_keyed_sampled_full             0.916              32.320
+
+----------------------------------------------------------------------------------
+Does transfer beat a practised human impostor?
+----------------------------------------------------------------------------------
+  delta=0: A1 practised human = 0.516
+      A2_population              0.796   BEATS the human baseline
+      A2_sampled                 0.452   below the human baseline
+      A4_global_median_early     0.878   BEATS the human baseline
+      A4_global_median_full      0.900   BEATS the human baseline
+      A4_global_sampled_early    0.576   BEATS the human baseline
+      A4_global_sampled_full     0.590   BEATS the human baseline
+      A4_keyed_median_early      0.902   BEATS the human baseline
+      A4_keyed_median_full       0.924   BEATS the human baseline
+      A4_keyed_sampled_early     0.890   BEATS the human baseline
+      A4_keyed_sampled_full      0.916   BEATS the human baseline
+
+  delta=7: A1 practised human = 0.801
+      A2_population              0.942   BEATS the human baseline
+      A2_sampled                 0.814   BEATS the human baseline
+      A4_global_median_early     0.966   BEATS the human baseline
+      A4_global_median_full      0.961   BEATS the human baseline
+      A4_global_sampled_early    0.869   BEATS the human baseline
+      A4_global_sampled_full     0.857   BEATS the human baseline
+      A4_keyed_median_early      0.972   BEATS the human baseline
+      A4_keyed_median_full       0.965   BEATS the human baseline
+      A4_keyed_sampled_early     0.972   BEATS the human baseline
+      A4_keyed_sampled_full      0.964   BEATS the human baseline
+

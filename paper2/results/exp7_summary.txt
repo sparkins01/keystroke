@@ -1,0 +1,21 @@
+============================================================================
+EXPERIMENT 7: calibration against the Killourhy & Maxion benchmark
+============================================================================
+51 subjects, 31 features, 400 repetitions each
+protocol: 200 enrolment, remaining genuine, 5 repetitions from each of the other subjects
+reference: scaled Manhattan, EER = 0.0962
+
+Killourhy & Maxion scaled Manhattan  EER 0.0953  (sd 0.0704, median 0.0760)
+Our M1, same protocol                EER 0.0923  (sd 0.0708, median 0.0780)
+Our M1, first 5 enrolment samples    EER 0.2567  (sd 0.1434, median 0.2335)
+Our M1, last 5 before test set       EER 0.0781  (sd 0.0479, median 0.0735)
+
+----------------------------------------------------------------------------
+Reading
+----------------------------------------------------------------------------
+harness reproduces the published figure to within 0.0009 (0.9%)
+our M1 differs from the published detector by 0.0030
+reducing enrolment from 200 to 5 samples costs +16.44 percentage points
+  of which enrolment size alone accounts for -1.42 points
+  and the added temporal gap for +17.86 points
+=> our implementation reproduces the benchmark, so the higher error rates on our own corpus are a property of the protocol and the enrolment size rather than of the code

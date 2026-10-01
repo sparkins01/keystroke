@@ -1,0 +1,77 @@
+========================================================================================
+ADVERSARY LADDER ACROSS MECHANISMS
+========================================================================================
+mechanisms : M1_Manhattan, M2_ShallowML, M3_TypeNet, M4_TypeFormer
+folds      : [np.int32(0), np.int32(1), np.int32(2), np.int32(3), np.int32(4)] (intersection, so all mechanisms are matched)
+metric     : FMR at a 5% usability budget
+
+----------------------------------------------------------------------------------------
+Delta = 0
+----------------------------------------------------------------------------------------
+                 attack  M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+         A0_unpractised         0.444         0.346       0.495          0.229
+           A1_practised         0.516         0.386       0.501          0.243
+          A2_population         0.796         0.607       0.739          0.238
+             A2_sampled         0.452         0.453       0.566          0.267
+ A4_global_median_early         0.878         0.789       0.677          0.563
+  A4_global_median_full         0.900         0.834       0.705          0.627
+A4_global_sampled_early         0.576         0.530       0.550          0.516
+ A4_global_sampled_full         0.590         0.542       0.567          0.547
+  A4_keyed_median_early         0.902         0.871       0.766          0.732
+   A4_keyed_median_full         0.924         0.903       0.797          0.780
+ A4_keyed_sampled_early         0.890         0.858       0.759          0.735
+  A4_keyed_sampled_full         0.916         0.893       0.789          0.782
+
+----------------------------------------------------------------------------------------
+Delta = 7
+----------------------------------------------------------------------------------------
+                 attack  M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+         A0_unpractised         0.764         0.761       0.815          0.830
+           A1_practised         0.801         0.754       0.784          0.815
+          A2_population         0.942         0.885       0.942          0.960
+             A2_sampled         0.814         0.874       0.878          0.894
+ A4_global_median_early         0.966         0.960       0.885          0.992
+  A4_global_median_full         0.961         0.942       0.861          0.964
+A4_global_sampled_early         0.869         0.884       0.841          0.978
+ A4_global_sampled_full         0.857         0.869       0.824          0.944
+  A4_keyed_median_early         0.972         0.981       0.931          0.998
+   A4_keyed_median_full         0.965         0.966       0.913          0.972
+ A4_keyed_sampled_early         0.972         0.982       0.931          0.998
+  A4_keyed_sampled_full         0.964         0.963       0.910          0.972
+
+----------------------------------------------------------------------------------------
+Does a more accurate matcher lose more security to a leaked profile?
+----------------------------------------------------------------------------------------
+Both rungs use identical forgery construction. A2_sampled knows nothing
+about the victim; A4_keyed_sampled_full holds their cross-password timings.
+
+    mechanism  baseline_accuracy_bits  uninformed_attack_bits  leaked_profile_bits  security_lost_bits
+ M1_Manhattan                   0.954                   1.145                0.127               1.018
+   M3_TypeNet                   0.998                   0.820                0.342               0.478
+ M2_ShallowML                   1.372                   1.141                0.163               0.978
+M4_TypeFormer                   2.040                   1.904                0.355               1.549
+
+correlation(baseline accuracy, security lost) = +0.842 over 4 mechanisms
+monotone in baseline accuracy: False
+=> no clean monotone relationship; treat the M1/M4 contrast as a two-point observation rather than a trend
+
+----------------------------------------------------------------------------------------
+Artefact check: median forgery vs the same attack with realistic spread
+----------------------------------------------------------------------------------------
+M1_Manhattan:
+   gap  A2_population          +0.344
+   gap  A4_global_median       +0.309
+   gap  A4_keyed_median        +0.009
+M2_ShallowML:
+   gap  A2_population          +0.154
+   gap  A4_global_median       +0.292
+   gap  A4_keyed_median        +0.010
+M3_TypeNet:
+   gap  A2_population          +0.173
+   gap  A4_global_median       +0.138
+   gap  A4_keyed_median        +0.008
+M4_TypeFormer:
+   gap  A2_population          -0.029
+   gap  A4_global_median       +0.079
+   gap  A4_keyed_median        -0.002
+
