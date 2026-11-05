@@ -1,12 +1,12 @@
 """
-Generates the additional figures for the paper draft (Paper/figures/):
+Generates the additional figures for the paper draft (results/figures/):
   - k_sweep.png            EER vs. enrolment size k, per mechanism
   - seed_robustness.png    per-fold, per-seed EER strip plot, M3 vs M4
   - forest_plot.png        mixed-effects model fixed-effect coefficients + 95% CI
   - trial_design.png       schematic of the enrolment-week x query-week trial grid
   - det_curves_combined.png  side-by-side clipped/unclipped DET curves
 
-Run after run_experiments.py; reads from Result/, writes to Paper/figures/.
+Run after run_experiments.py; reads from results/, writes to results/figures/.
 """
 import os
 

@@ -31,24 +31,29 @@ bash code/run.sh
 ```
 
 Paths default to `./data` and `./results` relative to the repository root, so a
-fresh clone runs with no configuration.
+fresh clone runs with no configuration. Figures are written to
+`./results/figures`. Set `KD_DATA_DIR`, `KD_RESULT_DIR` or `KD_FIG_DIR` to put
+any of the three somewhere else.
 
-`run.sh` has two modes. The default is a **quick verification run** (~5 minutes):
-one fold, one training seed, a reduced training budget and sub-sampled
-impostors. It exercises every stage of the pipeline, but the absolute error
-rates it produces will *not* match the paper.
+`run.sh` has two modes. The default is a **quick verification run** (~10
+minutes): one fold, one training seed, a reduced training budget and
+sub-sampled impostors. It exercises every stage of the pipeline, M5 included,
+but the absolute error rates it produces will *not* match the paper.
 
-For the **full reproduction** (~10–20 h on CPU), which runs the primary
-analysis, both independent end-to-end replicates, the training-seed variance
-decomposition, the logistic sensitivity check and the participant-balanced EER
-check:
+For the **full reproduction** (~20–30 h on CPU):
 
 ```bash
 REPRODUCTION_MODE=full KD_DEVICE=cuda bash code/run.sh
 ```
 
+That runs the primary analysis, both independent end-to-end replicates, the
+training-seed variance decomposition, the logistic sensitivity check, the
+participant-balanced EER check, and the analyses listed under *Revision
+analyses* below.
+
 The published results were produced on a single consumer-grade GPU, at roughly
-2.8 h per replicate.
+2.8 h per replicate. The two password-disjoint runs retrain M3 and M4, so they
+cost about as much again.
 
 ### Pipeline
 
@@ -61,6 +66,7 @@ The published results were produced on a single consumer-grade GPU, at roughly
 | Subject-disjoint folds | `splits.py` |
 | M1 scaled Manhattan, M2 gradient boosting | `matchers_classical.py` |
 | M3 TypeNet-style LSTM, M4 TypeFormer-style Transformer | `embedding_models.py` |
+| M5 ITAD, instance-based tail-area density | `matcher_itad.py` |
 | Genuine/impostor trial generation | `protocol.py` |
 | EER, FNMR, DET, bootstrap CIs | `metrics.py` |
 | Linear mixed-effects model | `stats_model.py` |
@@ -68,6 +74,42 @@ The published results were produced on a single consumer-grade GPU, at roughly
 | Training-seed variance decomposition | `seed_robustness_check.py` |
 | Participant-balanced EER check | `participant_balanced_eer.py` |
 | Orchestration | `run_experiments.py` |
+
+### Revision analyses
+
+Added during revision and run by `REPRODUCTION_MODE=full`. Each writes to
+`results/revision/`, except the M5 grid, which writes to `results/with_itad/`
+in the schema of the main run, so the published tables, figures and model read
+it without modification.
+
+| Analysis | Paper section | Module |
+|---|---|---|
+| M5 benchmarked on its own | Baselines for Comparison | `exp_itad.py` |
+| M5 scored across the full grid | Accuracy and Template Ageing | `exp_itad_integrate.py` |
+| M5 rows for the appendix tables | Ablations | `itad_appendix_rows.py` |
+| Mixed-effects model over all five mechanisms | Mixed-Effects Model | `refit_model_with_itad.py` |
+| Dwell against the digraph timings, and the provenance of the dwell channel | (supports the M5 feature weighting) | `exp_feature_ablation.py`, `exp_dwell_provenance.py` |
+| Password length and enrolment week as model terms | Mixed-Effects Model | `exp_model_extensions.py`, `exp_model_robustness.py`, `summarise_model_extensions.py` |
+| Length by gap, within each mechanism | Mixed-Effects Model | `exp_length_by_mechanism.py` |
+| Familiarisation against template ageing | Learning Effects and Template Ageing | `exp_familiarisation.py` |
+| A threshold fixed at enrolment | A Threshold Fixed at Enrolment | `exp_fixed_threshold.py`, `plot_fixed_threshold.py` |
+| Passwords withheld from training as well as participants | Unseen Passwords | `exp_password_disjoint.py`, `analyse_password_disjoint.py`, `estimate_memorisation.py` |
+| Why M3 ages more slowly | Mechanism-Dependent Ageing Rates | `exp_why_m3_ages_slowly.py`, `exp_m3_slope_prediction.py`, `exp_floor_effect.py` |
+| The published figures | – | `regenerate_bw_figures.py`, `make_single_column_figures.py` |
+
+The two password-disjoint runs are a pair. The swapped run is what separates
+intrinsic difficulty between the two password halves from the cost of a
+password the model never trained on, so `estimate_memorisation.py` needs both.
+
+### Which version matches the paper
+
+Tags mark the state behind each version of the paper, so a reader can retrieve
+the exact code rather than infer it from the current head.
+
+| Tag | Paper version |
+|---|---|
+| `paper1-template-ageing` | first submission |
+| `paper1-template-ageing-r1` | revised submission, M1 to M5 |
 
 ### Determinism
 
