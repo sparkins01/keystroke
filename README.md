@@ -7,8 +7,9 @@ Study Across Eight Weeks"*.
 S. Parkinson, S. Khan, N. Liu (University of Huddersfield) and Q. Xu (Tianjin
 University).
 
-A second study reuses this dataset without modifying it. Its code and results
-are in [`paper2/`](paper2/), and everything described below is unchanged by it.
+A second study, the **Adversary Analysis**, reuses this dataset without modifying
+it. Its code and results are in [`adversary_analysis/`](adversary_analysis/), and
+everything described below is unchanged by it.
 
 ## Contents
 
@@ -21,7 +22,7 @@ are in [`paper2/`](paper2/), and everything described below is unchanged by it.
 | `data/pairing_notes.csv` | Notes on timing/accuracy file pairing |
 | `code/` | The full analysis pipeline |
 | `requirements.txt` | Pinned package versions used for the published results |
-| `paper2/` | Code and results for a second study using the same dataset |
+| `adversary_analysis/` | Code and results for the Adversary Analysis, a second study using the same dataset |
 
 ## Running the analysis
 

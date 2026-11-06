@@ -1,0 +1,112 @@
+====================================================================================
+EXPERIMENT 17: within-session retries and a leak that precedes the attack
+====================================================================================
+
+------------------------------------------------------------------------------------
+1. HUMAN RETRIES WITHIN ONE SESSION (week 8, first three repetitions)
+------------------------------------------------------------------------------------
+delta = 0
+mechanism                   M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+units                         326100.000    326100.000  326100.000     326100.000
+within-session, 1 attempts         0.512         0.378       0.494          0.243
+within-session, 2 attempts         0.576         0.475       0.589          0.293
+within-session, 3 attempts         0.605         0.527       0.631          0.317
+R0 weeks 6-8, per attempt          0.508         0.376       0.498          0.242
+R0 weeks 6-8, 3 attempts           0.621         0.552       0.658          0.348
+
+delta = 7
+mechanism                   M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+units                          39828.000     39828.000   39828.000      39828.000
+within-session, 1 attempts         0.743         0.657       0.756          0.684
+within-session, 2 attempts         0.789         0.741       0.817          0.728
+within-session, 3 attempts         0.809         0.779       0.843          0.749
+R0 weeks 6-8, per attempt          0.739         0.658       0.761          0.680
+R0 weeks 6-8, 3 attempts           0.820         0.799       0.858          0.768
+
+------------------------------------------------------------------------------------
+2. LEAK HORIZON: A4 keyed sampled forgeries
+------------------------------------------------------------------------------------
+delta = 0, fmr
+mechanism                                         M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+horizon                                                                                                
+all weeks up to enrolment (causal)                       0.918         0.905       0.793          0.803
+two weeks before enrolment week (strictly prior)         0.932         0.892       0.792          0.787
+two weeks ending at enrolment (causal)                   0.928         0.930       0.810          0.846
+weeks 1-2 (R0 two-week)                                  0.888         0.851       0.756          0.726
+weeks 1-8 (R0 full)                                      0.914         0.890       0.788          0.774
+
+delta = 0, bits
+mechanism                                         M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+horizon                                                                                                
+all weeks up to enrolment (causal)                       0.124         0.144       0.335          0.317
+two weeks before enrolment week (strictly prior)         0.102         0.164       0.336          0.345
+two weeks ending at enrolment (causal)                   0.107         0.104       0.305          0.241
+weeks 1-2 (R0 two-week)                                  0.171         0.232       0.403          0.462
+weeks 1-8 (R0 full)                                      0.130         0.168       0.344          0.370
+
+delta = 0, three_attempts
+mechanism                                         M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+horizon                                                                                                
+all weeks up to enrolment (causal)                       0.936         0.941       0.836          0.840
+two weeks before enrolment week (strictly prior)         0.948         0.932       0.836          0.828
+two weeks ending at enrolment (causal)                   0.944         0.962       0.851          0.882
+weeks 1-2 (R0 two-week)                                  0.911         0.900       0.806          0.773
+weeks 1-8 (R0 full)                                      0.930         0.925       0.827          0.807
+
+delta = 7, fmr
+mechanism                               M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+horizon                                                                                      
+all weeks up to enrolment (causal)             0.956         0.973       0.917          0.975
+two weeks ending at enrolment (causal)         0.956         0.973       0.917          0.974
+weeks 1-2 (R0 two-week)                        0.952         0.955       0.914          0.955
+weeks 1-8 (R0 full)                            0.942         0.930       0.898          0.921
+
+delta = 7, bits
+mechanism                               M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+horizon                                                                                      
+all weeks up to enrolment (causal)             0.065         0.039       0.125          0.037
+two weeks ending at enrolment (causal)         0.066         0.040       0.125          0.038
+weeks 1-2 (R0 two-week)                        0.071         0.067       0.129          0.067
+weeks 1-8 (R0 full)                            0.086         0.105       0.155          0.119
+
+delta = 7, three_attempts
+mechanism                               M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+horizon                                                                                      
+all weeks up to enrolment (causal)             0.966         0.988       0.934          0.982
+two weeks ending at enrolment (causal)         0.966         0.989       0.934          0.981
+weeks 1-2 (R0 two-week)                        0.960         0.977       0.927          0.965
+weeks 1-8 (R0 full)                            0.950         0.949       0.912          0.929
+
+delta = 0, attack success by enrolment week
+-- two weeks ending at enrolment (causal)
+mechanism   M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+enrol_week                                                       
+1                  0.807         0.898       0.759          0.827
+2                  0.928         0.910       0.796          0.845
+3                  0.938         0.932       0.806          0.835
+4                  0.948         0.926       0.813          0.836
+5                  0.955         0.940       0.815          0.836
+6                  0.951         0.941       0.827          0.855
+7                  0.952         0.950       0.831          0.864
+8                  0.958         0.951       0.836          0.875
+-- two weeks before enrolment week (strictly prior)
+mechanism   M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+enrol_week                                                       
+2                  0.904         0.836       0.744          0.767
+3                  0.915         0.878       0.778          0.756
+4                  0.935         0.888       0.798          0.773
+5                  0.942         0.900       0.786          0.792
+6                  0.941         0.897       0.810          0.771
+7                  0.938         0.924       0.800          0.813
+8                  0.949         0.929       0.832          0.842
+-- weeks 1-2 (R0 two-week)
+mechanism   M1_Manhattan  M2_ShallowML  M3_TypeNet  M4_TypeFormer
+enrol_week                                                       
+1                  0.802         0.864       0.752          0.767
+2                  0.930         0.913       0.797          0.843
+3                  0.915         0.878       0.780          0.755
+4                  0.906         0.839       0.763          0.702
+5                  0.912         0.828       0.743          0.681
+6                  0.894         0.827       0.749          0.683
+7                  0.883         0.819       0.733          0.683
+8                  0.868         0.836       0.729          0.682

@@ -1,0 +1,177 @@
+====================================================================================
+EXPERIMENT 15: the A4 analyses repeated on the two-week leak
+====================================================================================
+
+------------------------------------------------------------------------------------
+COMPOSITION (as R0 Table 7 / Fig. 4), delta = 0, 5% budget within category
+------------------------------------------------------------------------------------
+-- M1_Manhattan
+substitution_category  human_bits  leaked_fmr  leaked_bits
+          combination       0.957       0.875        0.193
+                 none       0.996       0.832        0.266
+              numeric       0.934       0.912        0.132
+               symbol       1.019       0.894        0.162
+            uppercase       0.948       0.914        0.130
+   best-to-worst vs human : ['symbol', 'none', 'combination', 'uppercase', 'numeric']
+   best-to-worst vs leak  : ['none', 'combination', 'symbol', 'numeric', 'uppercase']
+   Spearman rho = +0.600
+   leaked bits by length: 0.151 to 0.196
+-- M2_ShallowML
+substitution_category  human_bits  leaked_fmr  leaked_bits
+          combination       1.232       0.775        0.368
+                 none       1.475       0.834        0.262
+              numeric       1.324       0.893        0.164
+               symbol       1.543       0.873        0.196
+            uppercase       1.492       0.869        0.203
+   best-to-worst vs human : ['symbol', 'uppercase', 'none', 'numeric', 'combination']
+   best-to-worst vs leak  : ['combination', 'none', 'uppercase', 'symbol', 'numeric']
+   Spearman rho = -0.400
+   leaked bits by length: 0.224 to 0.257
+-- M3_TypeNet
+substitution_category  human_bits  leaked_fmr  leaked_bits
+          combination       0.871       0.419        1.254
+                 none       1.002       0.776        0.366
+              numeric       1.061       0.844        0.244
+               symbol       1.078       0.836        0.259
+            uppercase       1.084       0.860        0.218
+   best-to-worst vs human : ['uppercase', 'symbol', 'numeric', 'none', 'combination']
+   best-to-worst vs leak  : ['combination', 'none', 'symbol', 'numeric', 'uppercase']
+   Spearman rho = -0.900
+   leaked bits by length: 0.318 to 0.459
+-- M4_TypeFormer
+substitution_category  human_bits  leaked_fmr  leaked_bits
+          combination       1.908       0.510        0.971
+                 none       2.047       0.683        0.550
+              numeric       2.089       0.807        0.309
+               symbol       2.113       0.794        0.333
+            uppercase       2.095       0.803        0.317
+   best-to-worst vs human : ['symbol', 'uppercase', 'numeric', 'none', 'combination']
+   best-to-worst vs leak  : ['combination', 'none', 'symbol', 'uppercase', 'numeric']
+   Spearman rho = -0.600
+   leaked bits by length: 0.411 to 0.505
+
+------------------------------------------------------------------------------------
+LOGISTIC MODEL (as exp6), two-week leak for A3 and A4
+------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+PRIMARY: binomial logistic, participant-clustered robust SEs
+------------------------------------------------------------------------------
+observations (cells): 2,115,460   underlying trials: 19,001,396
+clusters (participants): 85
+
+                                                                  coef  odds_ratio     se        z      p
+Intercept                                                       0.8504      2.3406 0.0916   9.2871 0.0000
+adversary[T.A0_human_naive]                                    -0.2146      0.8069 0.0614  -3.4962 0.0005
+adversary[T.A2_synth_population]                               -0.0053      0.9947 0.0499  -0.1065 0.9152
+adversary[T.A3_synth_speed]                                    -0.4468      0.6397 0.1032  -4.3301 0.0000
+adversary[T.A4_synth_keyed]                                     1.0672      2.9073 0.0996  10.7160 0.0000
+adversary[T.A0_human_naive]:C(mechanism)[T.M2_ShallowML]        0.1361      1.1458 0.0328   4.1456 0.0000
+adversary[T.A2_synth_population]:C(mechanism)[T.M2_ShallowML]   0.6112      1.8426 0.0544  11.2447 0.0000
+adversary[T.A3_synth_speed]:C(mechanism)[T.M2_ShallowML]        0.3049      1.3565 0.0543   5.6191 0.0000
+adversary[T.A4_synth_keyed]:C(mechanism)[T.M2_ShallowML]        0.2033      1.2254 0.0951   2.1379 0.0325
+adversary[T.A0_human_naive]:C(mechanism)[T.M3_TypeNet]          0.3008      1.3509 0.0314   9.5741 0.0000
+adversary[T.A2_synth_population]:C(mechanism)[T.M3_TypeNet]     0.5497      1.7328 0.0428  12.8519 0.0000
+adversary[T.A3_synth_speed]:C(mechanism)[T.M3_TypeNet]         -0.1029      0.9022 0.0859  -1.1982 0.2308
+adversary[T.A4_synth_keyed]:C(mechanism)[T.M3_TypeNet]         -0.9942      0.3700 0.1421  -6.9986 0.0000
+adversary[T.A0_human_naive]:C(mechanism)[T.M4_TypeFormer]       0.2270      1.2548 0.0362   6.2715 0.0000
+adversary[T.A2_synth_population]:C(mechanism)[T.M4_TypeFormer]  0.4790      1.6145 0.0955   5.0173 0.0000
+adversary[T.A3_synth_speed]:C(mechanism)[T.M4_TypeFormer]       1.0162      2.7628 0.0969  10.4880 0.0000
+adversary[T.A4_synth_keyed]:C(mechanism)[T.M4_TypeFormer]       0.1055      1.1113 0.1351   0.7812 0.4347
+adversary[T.A0_human_naive]:C(substitution)[T.none]            -0.0682      0.9340 0.0420  -1.6242 0.1043
+adversary[T.A2_synth_population]:C(substitution)[T.none]       -0.1826      0.8331 0.0336  -5.4277 0.0000
+adversary[T.A3_synth_speed]:C(substitution)[T.none]             0.5543      1.7407 0.0820   6.7622 0.0000
+adversary[T.A4_synth_keyed]:C(substitution)[T.none]             1.2285      3.4162 0.1209  10.1637 0.0000
+adversary[T.A0_human_naive]:C(substitution)[T.numeric]         -0.0531      0.9482 0.0254  -2.0925 0.0364
+adversary[T.A2_synth_population]:C(substitution)[T.numeric]    -0.1767      0.8381 0.0329  -5.3627 0.0000
+adversary[T.A3_synth_speed]:C(substitution)[T.numeric]          1.3017      3.6755 0.0651  19.9833 0.0000
+adversary[T.A4_synth_keyed]:C(substitution)[T.numeric]          1.7866      5.9694 0.1236  14.4598 0.0000
+adversary[T.A0_human_naive]:C(substitution)[T.symbol]          -0.0838      0.9196 0.0244  -3.4324 0.0006
+adversary[T.A2_synth_population]:C(substitution)[T.symbol]     -0.1302      0.8779 0.0378  -3.4422 0.0006
+adversary[T.A3_synth_speed]:C(substitution)[T.symbol]           1.2081      3.3472 0.0587  20.5984 0.0000
+adversary[T.A4_synth_keyed]:C(substitution)[T.symbol]           1.7070      5.5123 0.1078  15.8388 0.0000
+adversary[T.A0_human_naive]:C(substitution)[T.uppercase]       -0.0712      0.9313 0.0368  -1.9345 0.0531
+adversary[T.A2_synth_population]:C(substitution)[T.uppercase]  -0.2046      0.8150 0.0361  -5.6652 0.0000
+adversary[T.A3_synth_speed]:C(substitution)[T.uppercase]        1.0847      2.9585 0.0709  15.2909 0.0000
+adversary[T.A4_synth_keyed]:C(substitution)[T.uppercase]        1.7951      6.0198 0.1349  13.3061 0.0000
+delta_c                                                         0.2084      1.2317 0.0123  16.9354 0.0000
+adversary[T.A0_human_naive]:delta_c                             0.0183      1.0185 0.0063   2.8902 0.0038
+adversary[T.A2_synth_population]:delta_c                        0.0490      1.0502 0.0065   7.5756 0.0000
+adversary[T.A3_synth_speed]:delta_c                             0.0463      1.0474 0.0116   3.9944 0.0001
+adversary[T.A4_synth_keyed]:delta_c                             0.1007      1.1060 0.0209   4.8160 0.0000
+length_c                                                       -0.1347      0.8740 0.0035 -38.7919 0.0000
+
+------------------------------------------------------------------------------
+SENSITIVITY: linear probability model, same clustering
+------------------------------------------------------------------------------
+                                                                logit_p  linear_p  logit_sign  linear_sign  agree
+Intercept                                                        0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A0_human_naive]                                      0.0005    0.0002     -1.0000      -1.0000   True
+adversary[T.A2_synth_population]                                 0.9152    0.1817     -1.0000      -1.0000   True
+adversary[T.A3_synth_speed]                                      0.0000    0.0000     -1.0000      -1.0000   True
+adversary[T.A4_synth_keyed]                                      0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A0_human_naive]:C(mechanism)[T.M2_ShallowML]         0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A2_synth_population]:C(mechanism)[T.M2_ShallowML]    0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A3_synth_speed]:C(mechanism)[T.M2_ShallowML]         0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A4_synth_keyed]:C(mechanism)[T.M2_ShallowML]         0.0325    0.0000      1.0000       1.0000   True
+adversary[T.A0_human_naive]:C(mechanism)[T.M3_TypeNet]           0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A2_synth_population]:C(mechanism)[T.M3_TypeNet]      0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A3_synth_speed]:C(mechanism)[T.M3_TypeNet]           0.2308    0.2825     -1.0000      -1.0000   True
+adversary[T.A4_synth_keyed]:C(mechanism)[T.M3_TypeNet]           0.0000    0.0000     -1.0000      -1.0000   True
+adversary[T.A0_human_naive]:C(mechanism)[T.M4_TypeFormer]        0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A2_synth_population]:C(mechanism)[T.M4_TypeFormer]   0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A3_synth_speed]:C(mechanism)[T.M4_TypeFormer]        0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A4_synth_keyed]:C(mechanism)[T.M4_TypeFormer]        0.4347    0.0000      1.0000       1.0000  False
+adversary[T.A0_human_naive]:C(substitution)[T.none]              0.1043    0.0661     -1.0000      -1.0000   True
+adversary[T.A2_synth_population]:C(substitution)[T.none]         0.0000    0.0000     -1.0000      -1.0000   True
+adversary[T.A3_synth_speed]:C(substitution)[T.none]              0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A4_synth_keyed]:C(substitution)[T.none]              0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A0_human_naive]:C(substitution)[T.numeric]           0.0364    0.0163     -1.0000      -1.0000   True
+adversary[T.A2_synth_population]:C(substitution)[T.numeric]      0.0000    0.0000     -1.0000      -1.0000   True
+adversary[T.A3_synth_speed]:C(substitution)[T.numeric]           0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A4_synth_keyed]:C(substitution)[T.numeric]           0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A0_human_naive]:C(substitution)[T.symbol]            0.0006    0.0001     -1.0000      -1.0000   True
+adversary[T.A2_synth_population]:C(substitution)[T.symbol]       0.0006    0.0153     -1.0000      -1.0000   True
+adversary[T.A3_synth_speed]:C(substitution)[T.symbol]            0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A4_synth_keyed]:C(substitution)[T.symbol]            0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A0_human_naive]:C(substitution)[T.uppercase]         0.0531    0.0266     -1.0000      -1.0000  False
+adversary[T.A2_synth_population]:C(substitution)[T.uppercase]    0.0000    0.0000     -1.0000      -1.0000   True
+adversary[T.A3_synth_speed]:C(substitution)[T.uppercase]         0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A4_synth_keyed]:C(substitution)[T.uppercase]         0.0000    0.0000      1.0000       1.0000   True
+delta_c                                                          0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A0_human_naive]:delta_c                              0.0038    0.0018      1.0000       1.0000   True
+adversary[T.A2_synth_population]:delta_c                         0.0000    0.0000      1.0000       1.0000   True
+adversary[T.A3_synth_speed]:delta_c                              0.0001    0.7877      1.0000      -1.0000  False
+adversary[T.A4_synth_keyed]:delta_c                              0.0000    0.0000      1.0000      -1.0000  False
+length_c                                                         0.0000    0.0000     -1.0000      -1.0000   True
+
+terms where the two specifications disagree on sign or significance: 4
+=> CHECK: some conclusions depend on the link function, as in paper 1
+
+------------------------------------------------------------------------------------
+DIGRAPH COVERAGE FROM A TWO-WEEK LEAK, by category
+------------------------------------------------------------------------------------
+substitution_category
+none          0.642
+numeric       0.562
+symbol        0.525
+uppercase     0.469
+combination   0.349
+
+COVERAGE MODEL (coverage only), two-way clustered on participant and password
+                      coef  se_2way       z      p
+Intercept           2.1052   0.1867 11.2780 0.0000
+digraph_coverage_c  1.3466   0.6802  1.9798 0.0477
+length_c           -0.0595   0.0387 -1.5351 0.1248
+
+COVERAGE MODEL (both), two-way clustered on participant and password
+                                         coef  se_2way       z      p
+Intercept                              1.4365   0.2792  5.1447 0.0000
+C(substitution_category)[T.none]       0.5188   0.4004  1.2957 0.1951
+C(substitution_category)[T.numeric]    1.0377   0.3648  2.8447 0.0044
+C(substitution_category)[T.symbol]     1.0139   0.3505  2.8931 0.0038
+C(substitution_category)[T.uppercase]  0.9911   0.2918  3.3969 0.0007
+digraph_coverage_c                     1.0290   0.5927  1.7360 0.0826
+length_c                              -0.0484   0.0463 -1.0459 0.2956
+n_shifted_c                            0.1364   0.1654  0.8250 0.4094
+n_repeated_c                          -0.0175   0.1053 -0.1658 0.8683

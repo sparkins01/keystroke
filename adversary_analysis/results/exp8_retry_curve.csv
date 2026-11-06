@@ -1,0 +1,105 @@
+mechanism,delta,adversary,attempts,empirical
+M1_Manhattan,0,A1 practised human,1,0.5079876138642344
+M1_Manhattan,0,"A4 synthetic, keyed, 2-week leak",1,0.8881774853431186
+M1_Manhattan,0,"A4 synthetic, keyed, full leak",1,0.9139145472183559
+M1_Manhattan,7,A1 practised human,1,0.7389974806706628
+M1_Manhattan,7,"A4 synthetic, keyed, 2-week leak",1,0.9520330806340456
+M1_Manhattan,7,"A4 synthetic, keyed, full leak",1,0.9423845623707788
+M2_ShallowML,0,A1 practised human,1,0.37555107582527353
+M2_ShallowML,0,"A4 synthetic, keyed, 2-week leak",1,0.8513475895229659
+M2_ShallowML,0,"A4 synthetic, keyed, full leak",1,0.8903201315955965
+M2_ShallowML,7,A1 practised human,1,0.6577100165059508
+M2_ShallowML,7,"A4 synthetic, keyed, 2-week leak",1,0.9549276361130254
+M2_ShallowML,7,"A4 synthetic, keyed, full leak",1,0.9297036526533425
+M3_TypeNet,0,A1 practised human,1,0.4980876222504594
+M3_TypeNet,0,"A4 synthetic, keyed, 2-week leak",1,0.7562697709730483
+M3_TypeNet,0,"A4 synthetic, keyed, full leak",1,0.7876080813193302
+M3_TypeNet,7,A1 practised human,1,0.7606810876552862
+M3_TypeNet,7,"A4 synthetic, keyed, 2-week leak",1,0.914197105444521
+M3_TypeNet,7,"A4 synthetic, keyed, full leak",1,0.8980013783597519
+M4_TypeFormer,0,A1 practised human,1,0.2416729563353683
+M4_TypeFormer,0,"A4 synthetic, keyed, 2-week leak",1,0.7260196549833396
+M4_TypeFormer,0,"A4 synthetic, keyed, full leak",1,0.7739423847484078
+M4_TypeFormer,7,A1 practised human,1,0.6804361045956042
+M4_TypeFormer,7,"A4 synthetic, keyed, 2-week leak",1,0.9548587181254308
+M4_TypeFormer,7,"A4 synthetic, keyed, full leak",1,0.920882150241213
+M1_Manhattan,0,A1 practised human,2,0.584886111880733
+M1_Manhattan,0,"A4 synthetic, keyed, 2-week leak",2,0.9044244801552154
+M1_Manhattan,0,"A4 synthetic, keyed, full leak",2,0.9255556961491417
+M1_Manhattan,7,A1 practised human,2,0.7958735122925897
+M1_Manhattan,7,"A4 synthetic, keyed, 2-week leak",2,0.957512060647829
+M1_Manhattan,7,"A4 synthetic, keyed, full leak",2,0.9480013783597518
+M2_ShallowML,0,A1 practised human,2,0.48969821267254127
+M2_ShallowML,0,"A4 synthetic, keyed, 2-week leak",2,0.8852629803028386
+M2_ShallowML,0,"A4 synthetic, keyed, full leak",2,0.9144628622042262
+M2_ShallowML,7,A1 practised human,2,0.7550082529754149
+M2_ShallowML,7,"A4 synthetic, keyed, 2-week leak",2,0.97026188835286
+M2_ShallowML,7,"A4 synthetic, keyed, full leak",2,0.9436940041350792
+M3_TypeNet,0,A1 practised human,2,0.6081424936386769
+M3_TypeNet,0,"A4 synthetic, keyed, 2-week leak",2,0.7906111603188662
+M3_TypeNet,0,"A4 synthetic, keyed, full leak",2,0.815437175756042
+M3_TypeNet,7,A1 practised human,2,0.8301624533055338
+M3_TypeNet,7,"A4 synthetic, keyed, 2-week leak",2,0.9231909028256374
+M3_TypeNet,7,"A4 synthetic, keyed, full leak",2,0.9079944865609925
+M4_TypeFormer,0,A1 practised human,2,0.3118178894101087
+M4_TypeFormer,0,"A4 synthetic, keyed, 2-week leak",2,0.7581129528870892
+M4_TypeFormer,0,"A4 synthetic, keyed, full leak",2,0.7974440086043274
+M4_TypeFormer,7,A1 practised human,2,0.740648075753627
+M4_TypeFormer,7,"A4 synthetic, keyed, 2-week leak",2,0.9621295658166781
+M4_TypeFormer,7,"A4 synthetic, keyed, full leak",2,0.9266712611991729
+M1_Manhattan,0,A1 practised human,3,0.6212441123923989
+M1_Manhattan,0,"A4 synthetic, keyed, 2-week leak",3,0.9114260407440212
+M1_Manhattan,0,"A4 synthetic, keyed, full leak",3,0.9302290269517904
+M1_Manhattan,7,A1 practised human,3,0.8204326296585874
+M1_Manhattan,7,"A4 synthetic, keyed, 2-week leak",3,0.9600275671950379
+M1_Manhattan,7,"A4 synthetic, keyed, full leak",3,0.9504135079255686
+M2_ShallowML,0,A1 practised human,3,0.5518603088466181
+M2_ShallowML,0,"A4 synthetic, keyed, 2-week leak",3,0.8997469315449829
+M2_ShallowML,0,"A4 synthetic, keyed, full leak",3,0.9245898182124931
+M2_ShallowML,7,A1 practised human,3,0.7990357049778473
+M2_ShallowML,7,"A4 synthetic, keyed, 2-week leak",3,0.9765678842177808
+M2_ShallowML,7,"A4 synthetic, keyed, full leak",3,0.9489662301860786
+M3_TypeNet,0,A1 practised human,3,0.6583897811195292
+M3_TypeNet,0,"A4 synthetic, keyed, 2-week leak",3,0.8057783963895567
+M3_TypeNet,0,"A4 synthetic, keyed, full leak",3,0.8273356109494284
+M3_TypeNet,7,A1 practised human,3,0.8577273911910347
+M3_TypeNet,7,"A4 synthetic, keyed, 2-week leak",3,0.9268780151619573
+M3_TypeNet,7,"A4 synthetic, keyed, full leak",3,0.9119572708476913
+M4_TypeFormer,0,A1 practised human,3,0.3481928746811377
+M4_TypeFormer,0,"A4 synthetic, keyed, 2-week leak",3,0.7734067231852884
+M4_TypeFormer,0,"A4 synthetic, keyed, full leak",3,0.8073305495803281
+M4_TypeFormer,7,A1 practised human,3,0.7678394579098253
+M4_TypeFormer,7,"A4 synthetic, keyed, 2-week leak",3,0.965196416264645
+M4_TypeFormer,7,"A4 synthetic, keyed, full leak",3,0.9291178497587871
+M1_Manhattan,0,"A4 synthetic, keyed, 2-week leak",4,0.9152642456451137
+M1_Manhattan,0,"A4 synthetic, keyed, full leak",4,0.9325994348137838
+M1_Manhattan,7,"A4 synthetic, keyed, 2-week leak",4,0.9614748449345278
+M1_Manhattan,7,"A4 synthetic, keyed, full leak",4,0.9515506547208822
+M2_ShallowML,0,"A4 synthetic, keyed, 2-week leak",4,0.9079083892192837
+M2_ShallowML,0,"A4 synthetic, keyed, full leak",4,0.9303218187186301
+M2_ShallowML,7,"A4 synthetic, keyed, 2-week leak",4,0.9802205375603033
+M2_ShallowML,7,"A4 synthetic, keyed, full leak",4,0.951895244658856
+M3_TypeNet,0,"A4 synthetic, keyed, 2-week leak",4,0.8140368636382809
+M3_TypeNet,0,"A4 synthetic, keyed, full leak",4,0.8339449154329579
+M3_TypeNet,7,"A4 synthetic, keyed, 2-week leak",4,0.9288766368022053
+M3_TypeNet,7,"A4 synthetic, keyed, full leak",4,0.9140592694693315
+M4_TypeFormer,0,"A4 synthetic, keyed, 2-week leak",4,0.782386435530811
+M4_TypeFormer,0,"A4 synthetic, keyed, full leak",4,0.812864313130035
+M4_TypeFormer,7,"A4 synthetic, keyed, 2-week leak",4,0.9671950379048933
+M4_TypeFormer,7,"A4 synthetic, keyed, full leak",4,0.9306685044796693
+M1_Manhattan,0,"A4 synthetic, keyed, 2-week leak",5,0.9176262178919398
+M1_Manhattan,0,"A4 synthetic, keyed, full leak",5,0.9339913113163777
+M1_Manhattan,7,"A4 synthetic, keyed, 2-week leak",5,0.9624396967608546
+M1_Manhattan,7,"A4 synthetic, keyed, full leak",5,0.9521019986216402
+M2_ShallowML,0,"A4 synthetic, keyed, 2-week leak",5,0.9131975199291408
+M2_ShallowML,0,"A4 synthetic, keyed, full leak",5,0.9339913113163777
+M2_ShallowML,7,"A4 synthetic, keyed, 2-week leak",5,0.9824259131633356
+M2_ShallowML,7,"A4 synthetic, keyed, full leak",5,0.9538249483115093
+M3_TypeNet,0,"A4 synthetic, keyed, 2-week leak",5,0.8189295204352778
+M3_TypeNet,0,"A4 synthetic, keyed, full leak",5,0.8381205449407398
+M3_TypeNet,7,"A4 synthetic, keyed, 2-week leak",5,0.9300482425913164
+M3_TypeNet,7,"A4 synthetic, keyed, full leak",5,0.9152308752584425
+M4_TypeFormer,0,"A4 synthetic, keyed, 2-week leak",5,0.7882238812265384
+M4_TypeFormer,0,"A4 synthetic, keyed, full leak",5,0.8164410139609432
+M4_TypeFormer,7,"A4 synthetic, keyed, 2-week leak",5,0.9686423156443832
+M4_TypeFormer,7,"A4 synthetic, keyed, full leak",5,0.9317711922811854

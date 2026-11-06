@@ -1,0 +1,74 @@
+================================================================================
+EXPERIMENT 8: multi-attempt success, computed from the attempts
+================================================================================
+usability budget 5%, 3 permitted attempts
+pooled  = 1-(1-p)^n applied to the pooled rate, as in experiment 6
+empirical = per-gallery probability, then averaged
+
+--------------------------------------------------------------------------------
+A1 practised human,  delta = 0
+--------------------------------------------------------------------------------
+    mechanism  n_units  single_attempt  pooled_formula  empirical  overstatement
+ M1_Manhattan   314007           0.508           0.881      0.621          0.260
+ M2_ShallowML   314007           0.376           0.757      0.552          0.205
+   M3_TypeNet   314007           0.498           0.874      0.658          0.215
+M4_TypeFormer   314007           0.242           0.564      0.348          0.216
+
+--------------------------------------------------------------------------------
+A1 practised human,  delta = 7
+--------------------------------------------------------------------------------
+    mechanism  n_units  single_attempt  pooled_formula  empirical  overstatement
+ M1_Manhattan    38370           0.739           0.982      0.820          0.162
+ M2_ShallowML    38370           0.658           0.960      0.799          0.161
+   M3_TypeNet    38370           0.761           0.986      0.858          0.129
+M4_TypeFormer    38370           0.680           0.967      0.768          0.200
+
+--------------------------------------------------------------------------------
+A4 synthetic, keyed, 2-week leak,  delta = 0
+--------------------------------------------------------------------------------
+    mechanism  n_units  single_attempt  pooled_formula  empirical  overstatement
+ M1_Manhattan    23709           0.888           0.999      0.911          0.087
+ M2_ShallowML    23709           0.851           0.997      0.900          0.097
+   M3_TypeNet    23709           0.756           0.986      0.806          0.180
+M4_TypeFormer    23709           0.726           0.979      0.773          0.206
+
+--------------------------------------------------------------------------------
+A4 synthetic, keyed, 2-week leak,  delta = 7
+--------------------------------------------------------------------------------
+    mechanism  n_units  single_attempt  pooled_formula  empirical  overstatement
+ M1_Manhattan     2902           0.952           1.000      0.960          0.040
+ M2_ShallowML     2902           0.955           1.000      0.977          0.023
+   M3_TypeNet     2902           0.914           0.999      0.927          0.072
+M4_TypeFormer     2902           0.955           1.000      0.965          0.035
+
+--------------------------------------------------------------------------------
+A4 synthetic, keyed, full leak,  delta = 0
+--------------------------------------------------------------------------------
+    mechanism  n_units  single_attempt  pooled_formula  empirical  overstatement
+ M1_Manhattan    23709           0.914           0.999      0.930          0.069
+ M2_ShallowML    23709           0.890           0.999      0.925          0.074
+   M3_TypeNet    23709           0.788           0.990      0.827          0.163
+M4_TypeFormer    23709           0.774           0.988      0.807          0.181
+
+--------------------------------------------------------------------------------
+A4 synthetic, keyed, full leak,  delta = 7
+--------------------------------------------------------------------------------
+    mechanism  n_units  single_attempt  pooled_formula  empirical  overstatement
+ M1_Manhattan     2902           0.942           1.000      0.950          0.049
+ M2_ShallowML     2902           0.930           1.000      0.949          0.051
+   M3_TypeNet     2902           0.898           0.999      0.912          0.087
+M4_TypeFormer     2902           0.921           1.000      0.929          0.070
+
+--------------------------------------------------------------------------------
+Heterogeneity across victims (single-attempt success, A4 keyed, delta=0)
+--------------------------------------------------------------------------------
+A4 synthetic, keyed, 2-week leak | M1_Manhattan:  median 0.90  IQR 0.86-0.93  always vulnerable (>0.95): 13/85  resistant (<0.5): 0/85
+A4 synthetic, keyed, 2-week leak | M2_ShallowML:  median 0.93  IQR 0.78-0.98  always vulnerable (>0.95): 32/85  resistant (<0.5): 6/85
+A4 synthetic, keyed, 2-week leak | M3_TypeNet:  median 0.76  IQR 0.70-0.84  always vulnerable (>0.95): 6/85  resistant (<0.5): 3/85
+A4 synthetic, keyed, 2-week leak | M4_TypeFormer:  median 0.81  IQR 0.64-0.88  always vulnerable (>0.95): 12/85  resistant (<0.5): 14/85
+A4 synthetic, keyed, full leak | M1_Manhattan:  median 0.93  IQR 0.89-0.96  always vulnerable (>0.95): 29/85  resistant (<0.5): 0/85
+A4 synthetic, keyed, full leak | M2_ShallowML:  median 0.94  IQR 0.83-0.99  always vulnerable (>0.95): 35/85  resistant (<0.5): 2/85
+A4 synthetic, keyed, full leak | M3_TypeNet:  median 0.79  IQR 0.72-0.86  always vulnerable (>0.95): 7/85  resistant (<0.5): 1/85
+A4 synthetic, keyed, full leak | M4_TypeFormer:  median 0.81  IQR 0.72-0.91  always vulnerable (>0.95): 12/85  resistant (<0.5): 6/85
+
+largest overstatement by the pooled formula: 0.260

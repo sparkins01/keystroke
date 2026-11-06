@@ -1,0 +1,96 @@
+======================================================================================
+EXPERIMENT 5 (RQ4): does password composition change marginal security?
+======================================================================================
+Fresh template (delta=0), 5% usability budget applied within
+each group. "human" = practised human impostor; "leaked" = attacker holding
+the victim's cross-password timings.
+
+######################################################################################
+Grouped by substitution_category
+######################################################################################
+-- M1_Manhattan
+substitution_category  n_genuine  human_fmr  human_bits  leaked_fmr  leaked_bits
+          combination       4647      0.515       0.957       0.867        0.206
+                 none       4816      0.501       0.996       0.890        0.168
+              numeric       4811      0.523       0.934       0.933        0.099
+               symbol       4729      0.493       1.019       0.919        0.122
+            uppercase       4824      0.518       0.948       0.939        0.091
+   best-to-worst vs human : ['symbol', 'none', 'combination', 'uppercase', 'numeric']
+   best-to-worst vs leak  : ['combination', 'none', 'symbol', 'numeric', 'uppercase']
+   Spearman rho = +0.500   ORDERING CHANGES
+
+-- M2_ShallowML
+substitution_category  n_genuine  human_fmr  human_bits  leaked_fmr  leaked_bits
+          combination       4647      0.426       1.232       0.792        0.337
+                 none       4816      0.360       1.475       0.893        0.164
+              numeric       4811      0.399       1.324       0.929        0.106
+               symbol       4729      0.343       1.543       0.915        0.128
+            uppercase       4824      0.356       1.492       0.912        0.133
+   best-to-worst vs human : ['symbol', 'uppercase', 'none', 'numeric', 'combination']
+   best-to-worst vs leak  : ['combination', 'none', 'uppercase', 'symbol', 'numeric']
+   Spearman rho = -0.400   ORDERING CHANGES
+
+-- M3_TypeNet
+substitution_category  n_genuine  human_fmr  human_bits  leaked_fmr  leaked_bits
+          combination       4647      0.547       0.871       0.346        1.533
+                 none       4816      0.499       1.002       0.875        0.192
+              numeric       4811      0.479       1.061       0.892        0.165
+               symbol       4729      0.474       1.078       0.867        0.206
+            uppercase       4824      0.472       1.084       0.899        0.153
+   best-to-worst vs human : ['uppercase', 'symbol', 'numeric', 'none', 'combination']
+   best-to-worst vs leak  : ['combination', 'symbol', 'none', 'numeric', 'uppercase']
+   Spearman rho = -0.700   ORDERING CHANGES
+
+-- M4_TypeFormer
+substitution_category  n_genuine  human_fmr  human_bits  leaked_fmr  leaked_bits
+          combination       4647      0.266       1.908       0.487        1.038
+                 none       4816      0.242       2.047       0.777        0.364
+              numeric       4811      0.235       2.089       0.865        0.210
+               symbol       4729      0.231       2.113       0.841        0.250
+            uppercase       4824      0.234       2.095       0.858        0.220
+   best-to-worst vs human : ['symbol', 'uppercase', 'numeric', 'none', 'combination']
+   best-to-worst vs leak  : ['combination', 'none', 'symbol', 'uppercase', 'numeric']
+   Spearman rho = -0.600   ORDERING CHANGES
+
+######################################################################################
+Grouped by length
+######################################################################################
+-- M1_Manhattan
+ length  n_genuine  human_fmr  human_bits  leaked_fmr  leaked_bits
+      6       6001      0.554       0.851       0.907        0.141
+      7        594        NaN         NaN         NaN          NaN
+      8       5362      0.503       0.991       0.918        0.123
+     10       5933      0.449       1.156       0.909        0.138
+     12       5937      0.407       1.296       0.910        0.136
+
+-- M2_ShallowML
+ length  n_genuine  human_fmr  human_bits  leaked_fmr  leaked_bits
+      6       6001      0.450       1.151       0.903        0.148
+      7        594        NaN         NaN         NaN          NaN
+      8       5362      0.396       1.338       0.892        0.164
+     10       5933      0.336       1.575       0.889        0.169
+     12       5937      0.321       1.641       0.872        0.197
+
+-- M3_TypeNet
+ length  n_genuine  human_fmr  human_bits  leaked_fmr  leaked_bits
+      6       6001      0.571       0.808       0.781        0.356
+      7        594        NaN         NaN         NaN          NaN
+      8       5362      0.507       0.979       0.825        0.278
+     10       5933      0.454       1.139       0.763        0.390
+     12       5937      0.436       1.196       0.811        0.303
+
+-- M4_TypeFormer
+ length  n_genuine  human_fmr  human_bits  leaked_fmr  leaked_bits
+      6       6001      0.292       1.776       0.759        0.399
+      7        594        NaN         NaN         NaN          NaN
+      8       5362      0.254       1.978       0.794        0.333
+     10       5933      0.217       2.207       0.754        0.407
+     12       5937      0.203       2.300       0.774        0.369
+
+--------------------------------------------------------------------------------------
+Reading
+--------------------------------------------------------------------------------------
+If the ordering is preserved, the 2021/2023 policy advice still holds and
+this is a robustness result. If it changes, a policy chosen to maximise
+accuracy against strangers is not the policy that survives a real attacker,
+which is a direct correction to that advice.

@@ -1,0 +1,62 @@
+================================================================================
+EXPERIMENT 5b: how much of a target password can the attacker cover?
+================================================================================
+Fraction of the target password's characters and digraphs that appear
+in the victim's profile built from every OTHER password they typed.
+Uncovered positions fall back to a population estimate, which is the
+weak form of the attack.
+
+By substitution_category, best-covered first:
+substitution_category  char_coverage  digraph_coverage   n
+                 none          1.000             0.646 680
+              numeric          0.959             0.564 680
+               symbol          0.988             0.528 680
+            uppercase          0.966             0.472 680
+          combination          0.920             0.353 680
+
+By length, best-covered first:
+ length  char_coverage  digraph_coverage   n
+     10          0.962             0.607 850
+      8          0.972             0.512 765
+      7          1.000             0.500  85
+     12          0.959             0.488 850
+      6          0.970             0.445 850
+
+--------------------------------------------------------------------------------
+Does coverage predict attack success?
+--------------------------------------------------------------------------------
+M1_Manhattan: corr(digraph coverage, leaked-attack FMR) = +0.324 over 5 categories
+substitution_category  digraph_coverage  leaked_fmr
+          combination             0.353       0.867
+            uppercase             0.472       0.939
+               symbol             0.528       0.919
+              numeric             0.564       0.933
+                 none             0.646       0.890
+
+M2_ShallowML: corr(digraph coverage, leaked-attack FMR) = +0.724 over 5 categories
+substitution_category  digraph_coverage  leaked_fmr
+          combination             0.353       0.792
+            uppercase             0.472       0.912
+               symbol             0.528       0.915
+              numeric             0.564       0.929
+                 none             0.646       0.893
+
+M3_TypeNet: corr(digraph coverage, leaked-attack FMR) = +0.800 over 5 categories
+substitution_category  digraph_coverage  leaked_fmr
+          combination             0.353       0.346
+            uppercase             0.472       0.899
+               symbol             0.528       0.867
+              numeric             0.564       0.892
+                 none             0.646       0.875
+
+M4_TypeFormer: corr(digraph coverage, leaked-attack FMR) = +0.693 over 5 categories
+substitution_category  digraph_coverage  leaked_fmr
+          combination             0.353       0.487
+            uppercase             0.472       0.858
+               symbol             0.528       0.841
+              numeric             0.564       0.865
+                 none             0.646       0.777
+
+A positive correlation means the attack succeeds precisely where the
+victim's other passwords cover the target's digraphs, which is the
+mechanism the composition result needs.

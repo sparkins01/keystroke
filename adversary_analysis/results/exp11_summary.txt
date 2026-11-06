@@ -1,0 +1,23 @@
+============================================================================
+EXPERIMENT 11: the attacker's observation budget, in transferable units
+============================================================================
+Per victim, across the passwords other than any given target.
+
+early (weeks 1-2)   n = 85 victims
+  passwords_seen    median       39   IQR     39 - 39      min     31  max     39
+  samples           median      310   IQR    300 - 312     min     80  max    424
+  keystrokes        median     2783   IQR   2679 - 2800    min    710  max   3809
+  unique_chars      median       47   IQR     47 - 47      min     37  max     57
+  unique_digraphs   median      206   IQR    206 - 210     min    166  max    330
+
+full (weeks 1-8)   n = 85 victims
+  passwords_seen    median       39   IQR     39 - 39      min     34  max     39
+  samples           median     1240   IQR   1091 - 1246    min    152  max   1402
+  keystrokes        median    11131   IQR   9794 - 11188   min   1356  max  12587
+  unique_chars      median       47   IQR     47 - 48      min     42  max     59
+  unique_digraphs   median      209   IQR    206 - 217     min    176  max    384
+
+----------------------------------------------------------------------------
+For the paper: the two-week horizon gives the adversary a median of
+2783 keystrokes across 39 passwords, covering 47 distinct characters and
+206 distinct digraphs.
